@@ -3,13 +3,13 @@ CS24 - Spring 2015
 This folder contains cookbook submissions. 
 
 Instructions: 
- *  Start a new branch for you and your partner, checkout that branch
- *  Navigate to the root directory of the repo
- *  Run `python -m SimpleHTTPServer`
- *  Create a folder for you and your partner under `/partners` named `<partnera_and_partnerb>`
- *  Create a folder for your recipe under `/views/<topic>/<recipe name>/`
- *  Copy the template webpage from `/resources/template.html` and name it `<recipe_name>.html`
- *	Add you code to `\code\<recipe_name>`. Link your code to your webpage using under resources. 
- *  Symbolically link you submission to your partner folder. From the partner folder, run `ln -s <path_to_recipe_page> .`
- *  Add files to the git repo, commit, and push regularly
- *  To submit, merge your branch with master
+*  Start a new branch for you and your partner, checkout that branch
+*  Navigate to the root directory of the repo
+*  Run `python -m SimpleHTTPServer`
+*  Create a folder for you and your partner under `/partners` named `<partnera_and_partnerb>`
+*  Create a folder for your recipe under `/views/<topic>/<recipe name>/`
+*  Copy the template webpage from `/resources/template.html` and name it `<recipe_name>.html`
+*	Add you code to `\code\<recipe_name>`. Link your code to your webpage using under resources. 
+*  Symbolically link you submission to your partner folder. From the partner folder, run `ln -s <path_to_recipe_page> .`
+*  Add files to the git repo, commit, and push regularly
+*  To submit, merge your branch with master
