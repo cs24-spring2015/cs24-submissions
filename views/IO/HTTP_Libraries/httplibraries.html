@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> CS24 - Recipe Name </title>
+    <title> CS24 - HTTP Libraries </title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/cookbook.css">
 
@@ -50,34 +50,61 @@
   		</span>
 
   		<hr>
-  		<h1 id="recipe"> Controlling Case </h1> 
+  		<h1 id="recipe"> HTTP Libraries </h1> 
   		<hr>
   	
   	<section id="problem"> 
   		<h2> Problem </h2>
-  		<p class="lead">You need to convert strings to upper case or lowercase, or to compare strings without regard for case.</p>
+  		<p class="lead">Given a url, make a GET request and retrieve the body text of that document. Save the text to file. </p>
   	</section>
 
   	<section id="solution">
   		<h2> Solution </h2>
-  		<p class="lead">The String class has a number of methods for dealing with documents in a particular case. toUpperCase( ) and toLowerCase( ) each return a new string that is a copy of the current string, but converted as the name implies. Each can be called either with no arguments or with a Locale argument specifying the conversion rules; this is necessary because of internationalization. Java provides significantly more internationalization and localization features than ordinary languages, a feature that is covered in Chapter 15. While the equals( ) method tells you if another string is exactly the same, equalsIgnoreCase( ) tells you if all characters are the same regardless of case. Here, you can’t specify an alternate locale; the system’s default locale is used:</p>
+  		<p class="lead">The following code takes a URL, performs a GET request, and saves the subsequent text into a .txt file in the same directory that the code was executed in.</p>
  <pre class="pre-scrollable">
-// Case.java
-String name = "Java Cookbook";
-System.out.println("Normal:\t" + name);
-System.out.println("Upper:\t" + name.toUpperCase( ));
-System.out.println("Lower:\t" + name.toLowerCase( ));
-String javaName = "java cookBook"; // As if it were Java identifiers :-)
-if (!name.equals(javaName))
-    System.err.println("equals( ) correctly reports false");
-else
-    System.err.println("equals( ) incorrectly reports true");
-if (name.equalsIgnoreCase(javaName))
-    System.err.println("equalsIgnoreCase( ) correctly reports true");
-else
-    System.err.println("equalsIgnoreCase( ) incorrectly reports false");
+// httplibraries.java
+import java.io.*;
+import java.net.*;
+
+public class httplibraries {
+
+  public void get_request(String url_input) {
+    URL url;
+    HttpURLConnection conn;
+    BufferedReader read;
+    String temp;
+    String result = "";
+    try {
+      url = new URL(url_input);
+      conn = (HttpURLConnection) url.openConnection();
+      conn.setRequestMethod("GET");
+      read = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+    while ((temp = read.readLine()) != null) {
+      result += temp;
+    }
+    read.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    try {
+      PrintWriter writer = new PrintWriter("get_request.txt", "UTF-8");
+      writer.println(result);
+      writer.close();
+    } catch(IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void main(String args[]) {
+    httplibraries httplibraries = new httplibraries();
+    String input = "http://cearto.com/teaching/cs24";
+    httplibraries.get_request(input);
+  }
+}
 </pre>
-	<p class="lead">If you run this, it prints the first name changed to uppercase and lowercase, then it reports that both methods work as expected.</p>
+	<p class="lead">To use a different URL, change the input string.</p>
 
 	</section> 
 <!--   	<section class="discussion">
@@ -98,11 +125,11 @@ else
   	</div>
   	<div class="panel-body">
   		<label> Author(s) </label>
-  		<p class="author"> Ian F. Darwin </p> 
+  		<p class="author"> Nicki Peternel </p> 
   		<!-- <p class="author"> Second author </p>  -->
     	<label> Resources: </label>
   		<ul>
-  			<li><a href="/code/upper_and_lower_case"> Author A: Code</a></li>
+  			<li><a href="/code/http_libraries"> Author A: Code</a></li>
   			<!-- <li><a href=""> Author B: Code</a></li> -->
   			<!-- <li><a href=""> Final Code</a></li> -->
   		</ul>
