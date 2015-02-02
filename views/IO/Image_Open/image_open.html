@@ -45,8 +45,9 @@
   	<div class="recipe container">
   		<label> tags: </label>
   		<span id="tags">
-  			<span class="label label-primary">String</span>
+  			<span class="label label-primary">Images</span>
   			<span class="label label-primary">Formatting</span>
+            <span class="label label-primary">Arrays</span>
   		</span>
 
   		<hr>
@@ -60,24 +61,81 @@
 
   	<section id="solution">
   		<h2> Solution </h2>
-  		<p class="lead">The String class has a number of methods for dealing with documents in a particular case. toUpperCase( ) and toLowerCase( ) each return a new string that is a copy of the current string, but converted as the name implies. Each can be called either with no arguments or with a Locale argument specifying the conversion rules; this is necessary because of internationalization. Java provides significantly more internationalization and localization features than ordinary languages, a feature that is covered in Chapter 15. While the equals( ) method tells you if another string is exactly the same, equalsIgnoreCase( ) tells you if all characters are the same regardless of case. Here, you can’t specify an alternate locale; the system’s default locale is used:</p>
+  		<p class="lead">Multiple classes were used here. Scanner, BufferedImage, File, ImageIO, and IOException. Scanner was instantiated so that the user can type in the directory of the image file that they want to modify. BufferedImage allows an image to be created in code form, with the methods .getWidth(), .getHeight(), and setRGB(). ImageIO allows the file to be read and replaces the file. Because some methods ImageIO.read(), and ImageIO.write() threw IOExceptions immediately when called, the IOException class was called to instantiate and catch the exceptions. </p>
  <pre class="pre-scrollable">
-// Case.java
-String name = "Java Cookbook";
-System.out.println("Normal:\t" + name);
-System.out.println("Upper:\t" + name.toUpperCase( ));
-System.out.println("Lower:\t" + name.toLowerCase( ));
-String javaName = "java cookBook"; // As if it were Java identifiers :-)
-if (!name.equals(javaName))
-    System.err.println("equals( ) correctly reports false");
-else
-    System.err.println("equals( ) incorrectly reports true");
-if (name.equalsIgnoreCase(javaName))
-    System.err.println("equalsIgnoreCase( ) correctly reports true");
-else
-    System.err.println("equalsIgnoreCase( ) incorrectly reports false");
+// ImageOpen.java
+import java.util.Scanner;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
+import java.io.IOException;
+public class ImageOpen{
+
+	private static Scanner kb = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		//gets the image you specifically want to modify
+		System.out.print("Please type in the directory of the image you want to change: ");
+		String file = kb.next();
+		BufferedImage image = null;
+		int width, height;
+		int[] pixels;
+		File f = new File(file);
+
+		try{
+  			image = ImageIO.read(f);
+		}catch(IOException e){
+  			e.printStackTrace();
+		}
+			
+		width = image.getWidth();
+		height = image.getHeight();
+		pixels = new int[width * height];
+
+		//creates an array of the image's pixels
+		int counter = 0;
+		for(int x = 0; x < width; x++){
+			for(int y = 0; y < height; y++){
+				pixels[counter] = image.getRGB(x, y);
+				counter++;
+			}
+		}
+		counter = 0;
+
+		//sets the RGB values
+		int[] rgb = new int[3];
+		rgb[0] = (pixels[0] >> 16) & 0xff;
+		rgb[1] = (pixels[0] >> 8) & 0xff;
+		rgb[2] = pixels[0] & 0xff;
+
+		//prints out the RGB values
+		System.out.print("R: " + rgb[0] + " G: " + rgb[1] + " B: " + rgb[2]);
+
+		//calculates the RGB average
+		int average = 0;
+		for(int i = 0; i < rgb.length; i++){
+			average += rgb[i];
+		}
+		average /= rgb.length;
+
+		//subtracts the RGB average from the image's pixels
+		for(int x = 0; x < width; x++){
+			for(int y = 0; y < height; y++){
+				image.setRGB(x, y, pixels[counter] - average);
+				counter++;
+			}
+		}
+
+		//
+		try{
+  			ImageIO.write(image, "png", f);
+		}catch(IOException e){
+  			e.printStackTrace();
+		}
+	}
+}
 </pre>
-	<p class="lead">If you run this, it prints the first name changed to uppercase and lowercase, then it reports that both methods work as expected.</p>
+	<p class="lead">If you run this, it asks for the directory of the image file that you want read and modified. It prints out the original RGB values and modifies and replaces the original image.</p>
 
 	</section> 
 <!--   	<section class="discussion">
@@ -86,9 +144,11 @@ else
   	</section> -->
 
   	<section class="resources">
-  		<h2> Related </h2>
+<!--  		<h2> Related </h2>-->
+<!--
       <a href=""><span class="label label-success"> Related Recipe A</span></a>
   		<a href=""><span class="label label-success"> Related Recipe B</span></a>
+-->
   	</section>
     <br>
   <!-- BEGIN SUBMISSION DETAILS -->
@@ -102,7 +162,7 @@ else
   		<!-- <p class="author"> Second author </p>  -->
     	<label> Resources: </label>
   		<ul>
-  			<li><a href="/code/image_open"> Kisha Tarog: Code</a></li>
+  			<li><a href="/code/image_open"> Code</a></li>
 <!--  			 <li><a href=""> Author B: Code</a></li> -->
   			<!-- <li><a href=""> Final Code</a></li> -->
   		</ul>
