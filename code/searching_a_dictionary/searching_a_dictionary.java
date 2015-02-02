@@ -6,4 +6,16 @@ while (sc.hasNextLine()) {
   lines.add(sc.nextLine());
 }
 
-String[] arr = lines.toArray(new String[0]);
+String[] textarray = lines.toArray(new String[0]);
+
+
+function getAllIndexes(arr, val) {
+    var indexes = [], i = -1;
+    while ((i = arr.indexOf(val, i+1)) != -1){
+        indexes.push(i);
+    }
+    return indexes;
+}
+
+var indexes = getAllIndexes(textarray, "She");
+
