@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>CS24 - Recipe Name</title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1344.72">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Helvetica Neue'; color: #000000; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #0000ee; -webkit-text-stroke: #0000ee}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000; min-height: 14.0px}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000}
+    p.p5 {margin: 0.0px 0.0px 6.0px 0.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000; min-height: 14.0px}
+    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px Arial; color: #000000; -webkit-text-stroke: #000000; background-color: #ffffff}
+    p.p9 {margin: 0.0px 0.0px 12.0px 0.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000}
+    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Courier; color: #000000; -webkit-text-stroke: #000000}
+    li.li2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #0000ee; -webkit-text-stroke: #0000ee}
+    span.s1 {font-kerning: none; background-color: #c0c0c0}
+    span.s2 {font: 12.0px Times; text-decoration: underline ; font-kerning: none; color: #0000ee; -webkit-text-stroke: 0px #0000ee}
+    span.s3 {font: 12.0px Times; font-kerning: none}
+    span.s4 {-webkit-text-stroke: 0px #000000}
+    span.s5 {text-decoration: underline ; font-kerning: none}
+    span.s6 {font-kerning: none}
+    span.s7 {font-kerning: none; color: #000000; -webkit-text-stroke: 0px #000000}
+    ul.ul1 {list-style-type: disc}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">Toggle navigation </span><span class="s2">CS24</span><span class="s3"><span class="Apple-converted-space"> </span></span></p>
+<ul class="ul1">
+  <li class="li2"><span class="s4"><a href="file:///views/"><span class="s5">Home (current)</span></a></span></li>
+</ul>
+<p class="p3"><span class="s6"></span><br></p>
+<p class="p1"><span class="s1">Submit</span><span class="s3"><span class="Apple-converted-space"> </span></span></p>
+<p class="p4"><span class="s6">tags: String Formatting</span></p>
+<p class="p5"><span class="s6"></span><br></p>
+<h1 style="margin: 0.0px 0.0px 16.1px 0.0px; font: 24.0px Times; color: #000000; -webkit-text-stroke: #000000"><span class="s6"><b>Searching a Dictionary</b></span></h1>
+<p class="p5"><span class="s6"></span><br></p>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 18.0px Times; color: #000000; -webkit-text-stroke: #000000"><span class="s6"><b>Problem</b></span></h2>
+<p class="p8"><span class="s6">Given an array of text and a query word, find all instances of the word and return the index of the array, and the position of the word in the text.</span></p>
+<p class="p3"><span class="s6"></span><br></p>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 18.0px Times; color: #000000; -webkit-text-stroke: #000000"><span class="s6"><b>Solution<span class="Apple-converted-space"> </span></b></span></h2>
+<p class="p9"><span class="s6">The String class has a number of methods for dealing with documents in a particular case. toUpperCase( ) and toLowerCase( ) each return a new string that is a copy of the current string, but converted as the name implies. Each can be called either with no arguments or with a Locale argument specifying the conversion rules; this is necessary because of internationalization. Java provides significantly more internationalization and localization features than ordinary languages, a feature that is covered in Chapter 15. While the equals( ) method tells you if another string is exactly the same, equalsIgnoreCase( ) tells you if all characters are the same regardless of case. Here, you can’t specify an alternate locale; the system’s default locale is used:</span></p>
+<p class="p10"><span class="s6">// Case.java</span></p>
+<p class="p10"><span class="s6">String name = "Java Cookbook";</span></p>
+<p class="p10"><span class="s6">System.out.println("Normal:\t" + name);</span></p>
+<p class="p10"><span class="s6">System.out.println("Upper:\t" + name.toUpperCase( ));</span></p>
+<p class="p10"><span class="s6">System.out.println("Lower:\t" + name.toLowerCase( ));</span></p>
+<p class="p10"><span class="s6">String javaName = "java cookBook"; // As if it were Java identifiers :-)</span></p>
+<p class="p10"><span class="s6">if (!name.equals(javaName))</span></p>
+<p class="p10"><span class="s6"><span class="Apple-converted-space">    </span>System.err.println("equals( ) correctly reports false");</span></p>
+<p class="p10"><span class="s6">else</span></p>
+<p class="p10"><span class="s6"><span class="Apple-converted-space">    </span>System.err.println("equals( ) incorrectly reports true");</span></p>
+<p class="p10"><span class="s6">if (name.equalsIgnoreCase(javaName))</span></p>
+<p class="p10"><span class="s6"><span class="Apple-converted-space">    </span>System.err.println("equalsIgnoreCase( ) correctly reports true");</span></p>
+<p class="p10"><span class="s6">else</span></p>
+<p class="p10"><span class="s6"><span class="Apple-converted-space">    </span>System.err.println("equalsIgnoreCase( ) incorrectly reports false");</span></p>
+<p class="p9"><span class="s6">If you run this, it prints the first name changed to uppercase and lowercase, then it reports that both methods work as expected.</span></p>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 18.0px Times; color: #000000; -webkit-text-stroke: #000000"><span class="s6"><b>Related<span class="Apple-converted-space"> </span></b></span></h2>
+<p class="p2"><span class="s5">Related Recipe A</span><span class="s7"> </span><span class="s5">Related Recipe B</span><span class="s7"><span class="Apple-converted-space"> </span></span></p>
+<p class="p3"><span class="s6"></span><br></p>
+<h3 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 14.0px Times; color: #000000; -webkit-text-stroke: #000000"><span class="s6"><b>Submission Details</b></span></h3>
+<p class="p4"><span class="s6">Author(s)</span></p>
+<p class="p9"><span class="s6">Julie Deng and Justin Kim</span></p>
+<p class="p4"><span class="s6">Resources:</span></p>
+<ul class="ul1">
+  <li class="li2"><span class="s4"></span><span class="s5">Author A: Code</span></li>
+  <li class="li2"><span class="s4"></span><span class="s5">Author B: Code</span></li>
+  <li class="li2"><span class="s4"></span><span class="s5">Final Code</span></li>
+</ul>
+</body>
+</html>
