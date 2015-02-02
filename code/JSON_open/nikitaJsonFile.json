@@ -1,0 +1,12 @@
+{
+	"id": 1,
+        "firstname": "Nikita",
+	"programming languages": [
+		{ "lang":"python" , "knowledge":"advanced" }, 
+		{ "lang":"java" , "knowledge":"beginner" }, 
+	]
+	"me":{
+                "site":"www.nikitarau.com",
+                "name":"Nikita Rau",
+        }  
+}
