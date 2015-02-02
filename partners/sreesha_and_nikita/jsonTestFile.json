@@ -1,0 +1,12 @@
+{
+	"id": 1,
+        "firstname": "Sreesha",
+	"languages": [
+		{ "lang":"en" , "knowledge":"native" }, 
+		{ "lang":"fr" , "knowledge":"beginner" }, 
+	]
+	"job":{
+                "site":"www.javacodegeeks.com",
+                "name":"Java Code Geeks",
+        }  
+}
