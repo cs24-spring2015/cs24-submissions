@@ -1,5 +1,8 @@
 import Helper.txt;
 
+public class searching_a_dictionary {
+	public static Array main(string[] args) {}
+
 Scanner sc = new Scanner(new File(Helper.txt));
 List<String> lines = new ArrayList<String>();
 while (sc.hasNextLine()) {
@@ -18,4 +21,10 @@ function getAllIndexes(arr, val) {
 }
 
 var indexes = getAllIndexes(textarray, "She");
+
+
+
+
+	}
+
 
