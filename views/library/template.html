@@ -55,41 +55,36 @@
   	
   	<section id="problem"> 
   		<h2> Problem </h2>
-  		<p class="lead">You need to convert strings to upper case or lowercase, or to compare strings without regard for case.</p>
+  		<p class="lead"> Creating Jar Files</p>
   	</section>
 
   	<section id="solution">
   		<h2> Solution </h2>
-  		<p class="lead">The String class has a number of methods for dealing with documents in a particular case. toUpperCase( ) and toLowerCase( ) each return a new string that is a copy of the current string, but converted as the name implies. Each can be called either with no arguments or with a Locale argument specifying the conversion rules; this is necessary because of internationalization. Java provides significantly more internationalization and localization features than ordinary languages, a feature that is covered in Chapter 15. While the equals( ) method tells you if another string is exactly the same, equalsIgnoreCase( ) tells you if all characters are the same regardless of case. Here, you can’t specify an alternate locale; the system’s default locale is used:</p>
+  		<p class="lead"> In order to create a jar, you must specify the 
+      manifest and class files. </p>
  <pre class="pre-scrollable">
-// Case.java
-String name = "Java Cookbook";
-System.out.println("Normal:\t" + name);
-System.out.println("Upper:\t" + name.toUpperCase( ));
-System.out.println("Lower:\t" + name.toLowerCase( ));
-String javaName = "java cookBook"; // As if it were Java identifiers :-)
-if (!name.equals(javaName))
-    System.err.println("equals( ) correctly reports false");
-else
-    System.err.println("equals( ) incorrectly reports true");
-if (name.equalsIgnoreCase(javaName))
-    System.err.println("equalsIgnoreCase( ) correctly reports true");
-else
-    System.err.println("equalsIgnoreCase( ) incorrectly reports false");
+ jar cvfm Bike.jar manifest.txt *.class
 </pre>
-	<p class="lead">If you run this, it prints the first name changed to uppercase and lowercase, then it reports that both methods work as expected.</p>
+	<p class="lead"> In order to run the main methods in one of the class files, you need to run this command
+  specifying the class you want to run: </p>
+ <pre class="pre-scrollable">
+ //This line runs bicycle2:
+ java -cp Bike.jar Bicycle2
 
+ // This line runs Bicycle: 
+ java -cp Bike.jar Bicycle
+</pre>
 	</section> 
 <!--   	<section class="discussion">
   		<h2> Discussion </h2>
   		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   	</section> -->
 
-  	<section class="resources">
+  	<!-- <section class="resources">
   		<h2> Related </h2>
       <a href=""><span class="label label-success"> Related Recipe A</span></a>
   		<a href=""><span class="label label-success"> Related Recipe B</span></a>
-  	</section>
+  	</section> -->
     <br>
   <!-- BEGIN SUBMISSION DETAILS -->
   <div id="submission-details" class="panel panel-default">
@@ -98,11 +93,12 @@ else
   	</div>
   	<div class="panel-body">
   		<label> Author(s) </label>
-  		<p class="author"> Ian F. Darwin </p> 
+      <p class="author"> Jacqueline Garcia </p> 
+  		<p class="author"> Ethan </p> 
   		<!-- <p class="author"> Second author </p>  -->
     	<label> Resources: </label>
   		<ul>
-  			<li><a href="/code/upper_and_lower_case"> Author A: Code</a></li>
+  			<li><a href="/code/library"> Code: The class and manifest files.</a></li>
   			<!-- <li><a href=""> Author B: Code</a></li> -->
   			<!-- <li><a href=""> Final Code</a></li> -->
   		</ul>
