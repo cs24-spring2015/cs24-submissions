@@ -1,5 +1,6 @@
 # CS24 - Spring 2015 #
 This folder contains cookbook submissions. 
+Detailed instructions are here: http://cearto.com/cs24/latex_resources/submission_instructions.pdf
 
 Instructions: 
 
@@ -13,3 +14,7 @@ Navigate to the root directory of the repo
 * Symbolically link you submission to your partner folder. From the partner folder, run `ln -s <path_to_recipe_page> .`
 * Add files to the git repo, commit, and push regularly
 * To submit, merge your branch with master
+
+# Contributers #
+
+* Justin Kim

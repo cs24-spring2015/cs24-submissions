@@ -50,32 +50,38 @@
   		</span>
 
   		<hr>
-  		<h1 id="recipe"> Controlling Case </h1> 
+  		<h1 id="recipe"> Sine Wave </h1> 
   		<hr>
   	
   	<section id="problem"> 
   		<h2> Problem </h2>
-  		<p class="lead">You need to convert strings to upper case or lowercase, or to compare strings without regard for case.</p>
+  		<p class="lead">Implement the sin(x) using the approximation derived from the Taylor expansion series. </p>
   	</section>
 
   	<section id="solution">
   		<h2> Solution </h2>
-  		<p class="lead">The String class has a number of methods for dealing with documents in a particular case. toUpperCase( ) and toLowerCase( ) each return a new string that is a copy of the current string, but converted as the name implies. Each can be called either with no arguments or with a Locale argument specifying the conversion rules; this is necessary because of internationalization. Java provides significantly more internationalization and localization features than ordinary languages, a feature that is covered in Chapter 15. While the equals( ) method tells you if another string is exactly the same, equalsIgnoreCase( ) tells you if all characters are the same regardless of case. Here, you can’t specify an alternate locale; the system’s default locale is used:</p>
+  		<p class="lead">Using iteration and the Taylor series (1 + x)e^x, we can approximate sin(x).</p>
  <pre class="pre-scrollable">
-// Case.java
-String name = "Java Cookbook";
-System.out.println("Normal:\t" + name);
-System.out.println("Upper:\t" + name.toUpperCase( ));
-System.out.println("Lower:\t" + name.toLowerCase( ));
-String javaName = "java cookBook"; // As if it were Java identifiers :-)
-if (!name.equals(javaName))
-    System.err.println("equals( ) correctly reports false");
-else
-    System.err.println("equals( ) incorrectly reports true");
-if (name.equalsIgnoreCase(javaName))
-    System.err.println("equalsIgnoreCase( ) correctly reports true");
-else
-    System.err.println("equalsIgnoreCase( ) incorrectly reports false");
+// sinTaylor.java
+public class sinTaylor {
+  public static void main(String[] args) {
+    double x = Double.parseDouble(args[0]);
+    x = x % (2 * Math.PI);
+    double n = 1.0;
+    double sum = 0.0;
+
+    for (int i = 0; n != 0; i = i + 1) {
+      n = n * (x / i);
+      if (i % 4 == 1) {
+        sum = sum + n;
+      }
+      if (i % 4 == 3) {
+        sum = sum - n;
+      }
+    }
+    System.out.println(sum);
+  }
+}
 </pre>
 	<p class="lead">If you run this, it prints the first name changed to uppercase and lowercase, then it reports that both methods work as expected.</p>
 
@@ -98,13 +104,13 @@ else
   	</div>
   	<div class="panel-body">
   		<label> Author(s) </label>
-  		<p class="author"> Ian F. Darwin </p> 
+  		<p class="author"> Ian, Christine, Nicki </p> 
   		<!-- <p class="author"> Second author </p>  -->
     	<label> Resources: </label>
   		<ul>
-  			<li><a href="/code/upper_and_lower_case"> Author A: Code</a></li>
-  			<!-- <li><a href=""> Author B: Code</a></li> -->
-  			<!-- <li><a href=""> Final Code</a></li> -->
+  			<li><a href=""> Author A: Code</a></li>
+  			<li><a href=""> Author B: Code</a></li>
+  			<li><a href=""> Final Code</a></li>
   		</ul>
   	</div>
   </div>
