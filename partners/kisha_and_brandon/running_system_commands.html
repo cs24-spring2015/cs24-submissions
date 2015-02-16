@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> CS24 - Image Open </title>
+    <title> CS24 - Running System Commands </title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/cookbook.css">
 
@@ -45,95 +45,62 @@
   	<div class="recipe container">
   		<label> tags: </label>
   		<span id="tags">
-  			<span class="label label-primary">String</span>
-  			<span class="label label-primary">Formatting</span>
+  			<span class="label label-primary">System</span>
+  			<span class="label label-primary">Directories</span>
+            <span class="label label-primary">Print</span>
   		</span>
 
   		<hr>
-  		<h1 id="recipe"> Image Open </h1> 
+  		<h1 id="recipe"> Running System Commands </h1> 
   		<hr>
   	
   	<section id="problem"> 
   		<h2> Problem </h2>
-  		<p class="lead">Open an image file, read RGB values, calculate the average RGB value. Subtract the average from each pixel. Output and save the new image.</p>
+  		<p class="lead">Print the contents of the parent directory and the current directory. Prepend “PARENT” in front of each parent item.</p>
   	</section>
 
   	<section id="solution">
   		<h2> Solution </h2>
-  		<p class="lead">Several classes were imported for this code. Scanner was imported to allow user input on which file wanted to be modified. BufferedImage and ImageIO allowed the image to be changed. File allowed for directory to the file be seen</p>
+  		<p class="lead">The Scanner class was imported to allow for some input from the user. In this case, it was used to ask the user to input the directory the user wanted printed. The File class was used to check if some files were directories and to get the name of the files and directories. </p>
  <pre class="pre-scrollable">
 import java.util.Scanner;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import javax.imageio.ImageIO;
-import java.io.IOException;
-public class ImageOpen{
+
+public class PrintContents{
 
 	private static Scanner kb = new Scanner(System.in);
 
-	public static void main(String[] args) {
-		//gets the image you specifically want to modify
-		System.out.print("Please type in the directory of the image you want to change: ");
-		String file = kb.next();
-		BufferedImage image = null;
-		int width, height;
-		int[] pixels;
-		File f = new File(file);
+	public static void listDirectories(String d, int level){
+		File file = new File(d);
+		File[] files = file.listFiles();
 
-		try{
-  			image = ImageIO.read(f);
-		}catch(IOException e){
-  			e.printStackTrace();
-		}
-			
-		width = image.getWidth();
-		height = image.getHeight();
-		pixels = new int[width * height];
-
-		//creates an array of the image's pixels
-		int counter = 0;
-		for(int x = 0; x < width; x++){
-			for(int y = 0; y < height; y++){
-				pixels[counter] = image.getRGB(x, y);
-				counter++;
-			}
-		}
-		counter = 0;
-
-		//sets the RGB values
-		int[] rgb = new int[3];
-		rgb[0] = (pixels[0] >> 16) & 0xff;
-		rgb[1] = (pixels[0] >> 8) & 0xff;
-		rgb[2] = pixels[0] & 0xff;
-
-		//prints out the RGB values
-		System.out.print("R: " + rgb[0] + " G: " + rgb[1] + " B: " + rgb[2]);
-
-		//calculates the RGB average
-		int average = 0;
-		for(int i = 0; i < rgb.length; i++){
-			average += rgb[i];
-		}
-		average /= rgb.length;
-
-		//subtracts the RGB average from the image's pixels
-		for(int x = 0; x < width; x++){
-			for(int y = 0; y < height; y++){
-				image.setRGB(x, y, pixels[counter] - average);
-				counter++;
-			}
-		}
-
-		//
-		try{
-  			ImageIO.write(image, "png", f);
-		}catch(IOException e){
-  			e.printStackTrace();
-		}
+		if(files != null){
+			for(File f : files){
+	        	for (int i = 0; i < level; i++) {
+                	System.out.print("\t");
+                	}
+                	if (f.isDirectory()) {
+                    	System.out.println("PARENT DIRECTORY: " + f.getName());
+                    	listDirectories(f.getAbsolutePath(), level + 1);
+                	} 
+                	else {
+                   		System.out.println(f.getName());
+               	 	}
+           		}
+           	}
 	}
+
+	public static void main(String[] args) {
+
+		System.out.print("Please type the directory you want to view the files of: ");
+		String directory = kb.next();
+		listDirectories(directory, 0);
+
+	}
+	
 }
 </pre>
-	<p class="lead">If you run this, it prints the first name changed to uppercase and lowercase, then it reports that both methods work as expected.</p>
+	<p class="lead"></p> If you run this, you need to input in the directory you want to be read and it prints out all the files and subdirectories in it. Similar to the ls command on the command prompt.
 
 	</section> 
 <!--   	<section class="discussion">
@@ -158,7 +125,7 @@ public class ImageOpen{
   		<!-- <p class="author"> Second author </p>  -->
     	<label> Resources: </label>
   		<ul>
-  			<li><a href="/code/upper_and_lower_case"> Author A: Code</a></li>
+  			<li><a href="/code/running_system_commands/PrintContents.java"> Code</a></li>
   			<!-- <li><a href=""> Author B: Code</a></li> -->
   			<!-- <li><a href=""> Final Code</a></li> -->
   		</ul>
