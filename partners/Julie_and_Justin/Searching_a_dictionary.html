@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>CS24 - Recipe Name</title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1265.21">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Helvetica Neue'; background-color: #c0c0c0}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #0000ee}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; min-height: 14.0px}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times}
+    p.p5 {margin: 0.0px 0.0px 6.0px 0.0px; font: 12.0px Times; min-height: 14.0px}
+    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px Arial; background-color: #ffffff}
+    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px Menlo}
+    p.p11 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px Menlo; min-height: 13.0px}
+    p.p14 {margin: 0.0px 0.0px 12.0px 0.0px; font: 12.0px Times}
+    li.li2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #0000ee}
+    span.s1 {font: 12.0px Times; text-decoration: underline ; color: #0000ee}
+    span.s2 {font: 12.0px Times}
+    span.s3 {text-decoration: underline}
+    span.s4 {color: #bb2ca2}
+    span.s5 {color: #272ad8}
+    span.s6 {color: #d12f1b}
+    span.s7 {color: #000000}
+    ul.ul1 {list-style-type: disc}
+  </style>
+</head>
+<body>
+<p class="p1">Toggle navigation <span class="s1">CS24</span><span class="s2"><span class="Apple-converted-space"> </span></span></p>
+<ul class="ul1">
+  <li class="li2"><a href="file:///views/"><span class="s3">Home (current)</span></a></li>
+</ul>
+<p class="p3"><br></p>
+<p class="p1">Submit<span class="s2"><span class="Apple-converted-space"> </span></span></p>
+<p class="p4">tags: String Formatting</p>
+<p class="p5"><br></p>
+<h1 style="margin: 0.0px 0.0px 16.1px 0.0px; font: 24.0px Times"><b>Searching a Dictionary</b></h1>
+<p class="p5"><br></p>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 18.0px Times"><b>Problem</b></h2>
+<p class="p8">Given an array of text and a query word, find all instances of the word and return the index of the array, and the position of the word in the text.</p>
+<p class="p3"><br></p>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 18.0px Times"><b>Solution</b></h2>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 18.0px Times">We import a txt file, and use the scanner method to turn it into an array of words.<span class="Apple-converted-space"> </span></h2>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 14.0px Times">import Helper.txt;</h2>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 14.0px Times">Scanner sc = new Scanner(new File(Helper.txt));</h2>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 14.0px Times">List&lt;String&gt; lines = new ArrayList&lt;String&gt;();</h2>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 14.0px Times">while (sc.hasNextLine()) {</h2>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 14.0px Times"><span class="Apple-converted-space">  </span>lines.add(sc.nextLine());</h2>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 14.0px Times">}</h2>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 14.0px Times">String[] textarray = lines.toArray(new String[0]);</h2>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 18.0px Times">Then we define a function getAllIndexes to get the index of a word, i.e. find word “She”</h2>
+<p class="p10"><span class="s4">public</span> <span class="s4">static</span> Array getAllIndexes(arr, val) {</p>
+<p class="p10"><span class="Apple-converted-space">    </span>var indexes = [], i = <span class="s5">-1</span>;</p>
+<p class="p10"><span class="Apple-converted-space">    </span><span class="s4">while</span> ((i = arr.indexOf(val, i<span class="s5">+1</span>)) != <span class="s5">-1</span>){</p>
+<p class="p10"><span class="Apple-converted-space">        </span>indexes.push(i);</p>
+<p class="p10"><span class="Apple-converted-space">    </span>}</p>
+<p class="p10"><span class="Apple-converted-space">    </span><span class="s4">return</span> indexes;</p>
+<p class="p10">}</p>
+<p class="p11"><br></p>
+<p class="p10">var indexes = getAllIndexes(textarray, <span class="s6">"She"</span>);</p>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 18.0px Times; min-height: 23.0px"><b><span class="Apple-converted-space"> </span></b></h2>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 18.0px Times"><b>Related<span class="Apple-converted-space"> </span></b></h2>
+<p class="p2"><span class="s3">Related Recipe A</span><span class="s7"> </span><span class="s3">Related Recipe B</span><span class="s7"><span class="Apple-converted-space"> </span></span></p>
+<p class="p3"><br></p>
+<h3 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 14.0px Times"><b>Submission Details</b></h3>
+<p class="p4">Author(s)</p>
+<p class="p14">Julie Deng and Justin Kim</p>
+<p class="p4">Resources:</p>
+<ul class="ul1">
+  <li class="li2"><span class="s3">Author A: Code</span></li>
+  <li class="li2"><span class="s3">Author B: Code</span></li>
+  <li class="li2"><span class="s3">Final Code</span></li>
+</ul>
+</body>
+</html>
