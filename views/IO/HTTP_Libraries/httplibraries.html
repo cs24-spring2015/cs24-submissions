@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> CS24 - Recipe Name </title>
+    <title> CS24 - HTTP Libraries </title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/cookbook.css">
 
@@ -50,56 +50,61 @@
   		</span>
 
   		<hr>
-  		<h1 id="recipe"> Batch File Opening </h1> 
+  		<h1 id="recipe"> HTTP Libraries </h1> 
   		<hr>
   	
   	<section id="problem"> 
   		<h2> Problem </h2>
-  		<p class="lead">You want to see all the files of a certin type.</p>
+  		<p class="lead">Given a url, make a GET request and retrieve the body text of that document. Save the text to file. </p>
   	</section>
 
   	<section id="solution">
   		<h2> Solution </h2>
-  		<p class="lead">
-
-
-
-
-      </p>
+  		<p class="lead">The following code takes a URL, performs a GET request, and saves the subsequent text into a .txt file in the same directory that the code was executed in.</p>
  <pre class="pre-scrollable">
-import java.io.File;
+// httplibraries.java
+import java.io.*;
+import java.net.*;
 
-public class ListFiles {
-    
-    public static void main(String[] args) {
-        
-        // Directory path here
-        String path = args[0];
-        String type = args[1];
-        
-        String files;
-        File folder = new File(path);
-        File[] listOfFiles = folder.listFiles();
-        
-        for (int i = 0; i < listOfFiles.length; i++)
-        {
-            
-            if (listOfFiles[i].isFile())
-            {
-                files = listOfFiles[i].getName();
-                if (files.endsWith(type))
-                {
-                    System.out.println(files);
-                }
-            }
-        }
+public class httplibraries {
+
+  public void get_request(String url_input) {
+    URL url;
+    HttpURLConnection conn;
+    BufferedReader read;
+    String temp;
+    String result = "";
+    try {
+      url = new URL(url_input);
+      conn = (HttpURLConnection) url.openConnection();
+      conn.setRequestMethod("GET");
+      read = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+    while ((temp = read.readLine()) != null) {
+      result += temp;
     }
+    read.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    try {
+      PrintWriter writer = new PrintWriter("get_request.txt", "UTF-8");
+      writer.println(result);
+      writer.close();
+    } catch(IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void main(String args[]) {
+    httplibraries httplibraries = new httplibraries();
+    String input = "http://cearto.com/teaching/cs24";
+    httplibraries.get_request(input);
+  }
 }
 </pre>
-	<p class="lead">If you run this, it prints the file names that are of the same file type specified: 
-  </p>
-  <p class="lead"> ListFiles (DIRECTORY_LOCATION)   (FILE_TYPE) 
-  </p>
+	<p class="lead">To use a different URL, change the input string.</p>
 
 	</section> 
 <!--   	<section class="discussion">
@@ -107,7 +112,11 @@ public class ListFiles {
   		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   	</section> -->
 
-  
+  	<section class="resources">
+  		<h2> Related </h2>
+      <a href=""><span class="label label-success"> Related Recipe A</span></a>
+  		<a href=""><span class="label label-success"> Related Recipe B</span></a>
+  	</section>
     <br>
   <!-- BEGIN SUBMISSION DETAILS -->
   <div id="submission-details" class="panel panel-default">
@@ -116,11 +125,13 @@ public class ListFiles {
   	</div>
   	<div class="panel-body">
   		<label> Author(s) </label>
-  		<p class="author"> Tommy &amp; Alejandro </p> 
+  		<p class="author"> Nicki Peternel </p> 
   		<!-- <p class="author"> Second author </p>  -->
     	<label> Resources: </label>
   		<ul>
-  			<li><a href="/code/batch_file_opening"> Final Code</a></li>
+  			<li><a href="/code/http_libraries"> Author A: Code</a></li>
+  			<!-- <li><a href=""> Author B: Code</a></li> -->
+  			<!-- <li><a href=""> Final Code</a></li> -->
   		</ul>
   	</div>
   </div>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> CS24 - Recipe Name </title>
+    <title> CS24 - JSON open</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/cookbook.css">
 
@@ -50,12 +50,12 @@
   		</span>
 
   		<hr>
-  		<h1 id="recipe"> Batch File Opening </h1> 
+  		<h1 id="recipe"> JSON open</h1> 
   		<hr>
   	
   	<section id="problem"> 
   		<h2> Problem </h2>
-  		<p class="lead">You want to see all the files of a certin type.</p>
+  		<p class="lead">Given a .json file, open the file, parse the file, change some values in it, and write and save a new json file.</p>
   	</section>
 
   	<section id="solution">
@@ -67,39 +67,51 @@
 
       </p>
  <pre class="pre-scrollable">
-import java.io.File;
+/* Nikita Rau
+* Given a .json file, open the file, parse the file, 
+* change some values in it, and write and save a new json file. */
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Iterator;
 
-public class ListFiles {
-    
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+public class JsonEncodeDemo {
     public static void main(String[] args) {
-        
-        // Directory path here
-        String path = args[0];
-        String type = args[1];
-        
-        String files;
-        File folder = new File(path);
-        File[] listOfFiles = folder.listFiles();
-        
-        for (int i = 0; i < listOfFiles.length; i++)
-        {
-            
-            if (listOfFiles[i].isFile())
-            {
-                files = listOfFiles[i].getName();
-                if (files.endsWith(type))
-                {
-                    System.out.println(files);
-                }
-            }
-        }
+
+    try {
+      // read the json file
+      FileReader reader = new FileReader(args[0]);
+
+      JSONParser jsonParser = new JSONParser();
+      JSONObject obj = (JSONObject) jsonParser.parse(reader);
+      obj.put("name", "foo");
+        obj.put("num", new Integer(100));
+        obj.put("balance", new Double(1000.21));
+        obj.put("is_vip", new Boolean(true));
+      System.out.println(obj);
+
+    } catch (FileNotFoundException ex) {
+      ex.printStackTrace();
+    } catch (IOException ex) {
+      ex.printStackTrace();
+    } catch (ParseException ex) {
+      ex.printStackTrace();
+    } catch (NullPointerException ex) {
+      ex.printStackTrace();
     }
+
+  }
+
 }
 </pre>
-	<p class="lead">If you run this, it prints the file names that are of the same file type specified: 
+	<p class="lead">If you run this on a json file, you will get back an object which you can use to get/set data. 
   </p>
-  <p class="lead"> ListFiles (DIRECTORY_LOCATION)   (FILE_TYPE) 
-  </p>
+ 
 
 	</section> 
 <!--   	<section class="discussion">
@@ -116,11 +128,11 @@ public class ListFiles {
   	</div>
   	<div class="panel-body">
   		<label> Author(s) </label>
-  		<p class="author"> Tommy &amp; Alejandro </p> 
+  		<p class="author"> Nikita &amp; Sreesha </p> 
   		<!-- <p class="author"> Second author </p>  -->
     	<label> Resources: </label>
   		<ul>
-  			<li><a href="/code/batch_file_opening"> Final Code</a></li>
+  			<li><a href="/code/json_parse"> Final Code</a></li>
   		</ul>
   	</div>
   </div>

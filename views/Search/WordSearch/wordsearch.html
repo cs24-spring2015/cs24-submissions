@@ -50,56 +50,52 @@
   		</span>
 
   		<hr>
-  		<h1 id="recipe"> Batch File Opening </h1> 
+  		<h1 id="recipe"> Prefix/Suffix Search </h1> 
   		<hr>
   	
   	<section id="problem"> 
   		<h2> Problem </h2>
-  		<p class="lead">You want to see all the files of a certin type.</p>
+  		<p class="lead">Given some text, a prefix/suffix flag, and a query word, find all prefix/suffix instances in the text. Sort by closeness. </p>
   	</section>
 
   	<section id="solution">
   		<h2> Solution </h2>
-  		<p class="lead">
+  		<p class="lead"> Here is the code: </p>
 
-
-
-
-      </p>
  <pre class="pre-scrollable">
-import java.io.File;
-
-public class ListFiles {
-    
-    public static void main(String[] args) {
-        
-        // Directory path here
-        String path = args[0];
-        String type = args[1];
-        
-        String files;
-        File folder = new File(path);
-        File[] listOfFiles = folder.listFiles();
-        
-        for (int i = 0; i < listOfFiles.length; i++)
-        {
-            
-            if (listOfFiles[i].isFile())
-            {
-                files = listOfFiles[i].getName();
-                if (files.endsWith(type))
-                {
-                    System.out.println(files);
-                }
-            }
+  public class wordSearch{
+  public static void wordSearch(String prefix, boolean isPrefix, String[] w) {
+    if isPrefix {
+      String[] wMatching;
+      for (str : w) {
+        if (str.regionMatches(true, 0, prefix, 0, prefix.length())) { // check if it's matching
+          wMatching.append(str);
         }
+      }
+    } 
+    else { 
+      //reverse it
+      for (str : w) {
+        str = new StringBuilder(str).reverse().toString();
+      }
+      // isPrefix code which returns a wMatching list
+      String[] wMatching;
+      for (str : w) {
+        if (str.regionMatches(true, 0, prefix, 0, prefix.length())) { // check if it's matching
+          wMatching.append(str);
+        }
+      }
+      // reverse it back
+      for (str : wMatching) {
+        str = new StringBuilder(str).reverse().toString();
+      }
     }
+    return wMatching;
+  }
 }
 </pre>
-	<p class="lead">If you run this, it prints the file names that are of the same file type specified: 
-  </p>
-  <p class="lead"> ListFiles (DIRECTORY_LOCATION)   (FILE_TYPE) 
-  </p>
+	<p class="lead">You'll want to use a ArrayList<String> for your wMatching. I'm assuming you first wrote this in python? ArrayList is the closest thing to python's array. Java's Array [ ] is much more limited (you can only access and place elements in indices).
+Good strategy on the reversal. Just remember to reverse the prefix too! (e.g. prefix: go => og ... word: pogo => ogop) </p>
 
 	</section> 
 <!--   	<section class="discussion">
@@ -107,7 +103,6 @@ public class ListFiles {
   		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   	</section> -->
 
-  
     <br>
   <!-- BEGIN SUBMISSION DETAILS -->
   <div id="submission-details" class="panel panel-default">
@@ -116,11 +111,11 @@ public class ListFiles {
   	</div>
   	<div class="panel-body">
   		<label> Author(s) </label>
-  		<p class="author"> Tommy &amp; Alejandro </p> 
+  		<p class="author"> Christine &amp; Ian </p> 
   		<!-- <p class="author"> Second author </p>  -->
     	<label> Resources: </label>
   		<ul>
-  			<li><a href="/code/batch_file_opening"> Final Code</a></li>
+  			<li><a href="wordSearch.java"> Final Code</a></li>
   		</ul>
   	</div>
   </div>
