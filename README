@@ -14,3 +14,7 @@ Navigate to the root directory of the repo
 * Symbolically link you submission to your partner folder. From the partner folder, run `ln -s <path_to_recipe_page> .`
 * Add files to the git repo, commit, and push regularly
 * To submit, merge your branch with master
+
+# Contributers #
+
+* Justin Kim
