@@ -44,4 +44,10 @@ public class Set {
 		}
 		return sIntersect;
 	}
+
+    public Set union(Set s1, Set s2) {
+        Set temp = s1;
+        temp.tail = s2;
+        return temp;
+    }
 }
