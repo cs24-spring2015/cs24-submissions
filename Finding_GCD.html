@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>CS24 - Recipe Name</title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1265.21">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Lucida Grande'; background-color: #c0c0c0}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #0000ee}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; min-height: 14.0px}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times}
+    p.p5 {margin: 0.0px 0.0px 6.0px 0.0px; font: 12.0px Times; min-height: 14.0px}
+    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px Arial; background-color: #ffffff}
+    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 15.0px; font: 12.0px Helvetica; color: #373e4d; background-color: #f6f7f8}
+    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 15.0px; font: 12.0px Helvetica; color: #373e4d; background-color: #dbedfe; min-height: 14.0px}
+    p.p11 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 15.0px; font: 12.0px Helvetica; color: #373e4d; background-color: #dbedfe}
+    p.p14 {margin: 0.0px 0.0px 12.0px 0.0px; font: 12.0px Times}
+    li.li2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #0000ee}
+    span.s1 {font: 12.0px Times; text-decoration: underline ; color: #0000ee}
+    span.s2 {text-decoration: underline}
+    span.s3 {color: #000000}
+    ul.ul1 {list-style-type: disc}
+  </style>
+</head>
+<body>
+<p class="p1">Toggle navigation <span class="s1">CS24</span></p>
+<ul class="ul1">
+  <li class="li2"><a href="file:///views/"><span class="s2">Home (current)</span></a></li>
+</ul>
+<p class="p3"><br></p>
+<p class="p1">Submit</p>
+<p class="p4">tags: String Formatting</p>
+<p class="p5"><br></p>
+<h1 style="margin: 0.0px 0.0px 16.1px 0.0px; font: 24.0px Times"><b>Finding GCD</b></h1>
+<p class="p5"><br></p>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 18.0px Times"><b>Problem</b></h2>
+<p class="p8">Create a class that generates the Greatest common denominator between to numbers. Use Euclid’s algorithm.</p>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 18.0px Times"><b>Solution</b></h2>
+<p class="p9">The Euclid's algorithm is an efficient way to find GCD of two numbers and its pretty easy to implement using recursion in Java program. According to Euclid's method GCD of two numbers a, b is equal to GCD(b, a mod b) and GCD(a, 0) = a. The later case is a<span class="Apple-converted-space">  </span>based case for Java program to find GCD of two numbers using recursion</p>
+<p class="p9">The Euclidean algorithm is based on the principle that the greatest common divisor of two numbers does not change if the larger number is replaced by its difference with the smaller number.</p>
+<p class="p10"><br></p>
+<p class="p11">public int GCD(int a, int b){</p>
+<p class="p11"><span class="Apple-converted-space">   </span>if (b==0) return a;</p>
+<p class="p11"><span class="Apple-converted-space">   </span>return GCD(b,a%b);</p>
+<p class="p11">}</p>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 18.0px Times; min-height: 23.0px"><b></b><br></h2>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 18.0px Times"><b>Related</b></h2>
+<p class="p2">Related Recipe A<span class="s3"> </span>Related Recipe B</p>
+<p class="p3"><br></p>
+<h3 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 14.0px Times"><b>Submission Details</b></h3>
+<p class="p4">Author(s)</p>
+<p class="p14">Julie Justin</p>
+<p class="p4">Resources:</p>
+<ul class="ul1">
+  <li class="li2"><span class="s2">Author A: Code</span></li>
+  <li class="li2"><span class="s2">Author B: Code</span></li>
+  <li class="li2"><span class="s2">Final Code</span></li>
+</ul>
+</body>
+</html>
