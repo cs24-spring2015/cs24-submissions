@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> CS24 - HTTP Libraries </title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/cookbook.css">
+
+    <script src="/js/cookbook.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+
+  <nav class="navbar navbar-default navbar-fixed-top ">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">CS24</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/views/">Home <span class="sr-only">(current)</span></a></li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+  	<div class="recipe container">
+  		<label> tags: </label>
+  		<span id="tags">
+  			<span class="label label-primary">String</span>
+  			<span class="label label-primary">Formatting</span>
+  		</span>
+
+  		<hr>
+  		<h1 id="recipe"> HTTP Libraries </h1> 
+  		<hr>
+  	
+  	<section id="problem"> 
+  		<h2> Problem </h2>
+  		<p class="lead">Given a url, make a GET request and retrieve the body text of that document. Save the text to file. </p>
+  	</section>
+
+  	<section id="solution">
+  		<h2> Solution </h2>
+  		<p class="lead">The following code takes a URL, performs a GET request, and saves the subsequent text into a .txt file in the same directory that the code was executed in.</p>
+ <pre class="pre-scrollable">
+// httplibraries.java
+import java.io.*;
+import java.net.*;
+
+public class httplibraries {
+
+  public void get_request(String url_input) {
+    URL url;
+    HttpURLConnection conn;
+    BufferedReader read;
+    String temp;
+    String result = "";
+    try {
+      url = new URL(url_input);
+      conn = (HttpURLConnection) url.openConnection();
+      conn.setRequestMethod("GET");
+      read = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+    while ((temp = read.readLine()) != null) {
+      result += temp;
+    }
+    read.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    try {
+      PrintWriter writer = new PrintWriter("get_request.txt", "UTF-8");
+      writer.println(result);
+      writer.close();
+    } catch(IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void main(String args[]) {
+    httplibraries httplibraries = new httplibraries();
+    String input = "http://cearto.com/teaching/cs24";
+    httplibraries.get_request(input);
+  }
+}
+</pre>
+	<p class="lead">To use a different URL, change the input string.</p>
+
+	</section> 
+<!--   	<section class="discussion">
+  		<h2> Discussion </h2>
+  		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  	</section> -->
+
+  	<section class="resources">
+  		<h2> Related </h2>
+      <a href=""><span class="label label-success"> Related Recipe A</span></a>
+  		<a href=""><span class="label label-success"> Related Recipe B</span></a>
+  	</section>
+    <br>
+  <!-- BEGIN SUBMISSION DETAILS -->
+  <div id="submission-details" class="panel panel-default">
+  	<div class="panel-heading">
+    	<h3 class="panel-title">Submission Details</h3>
+  	</div>
+  	<div class="panel-body">
+  		<label> Author(s) </label>
+  		<p class="author"> Nicki Peternel </p> 
+  		<!-- <p class="author"> Second author </p>  -->
+    	<label> Resources: </label>
+  		<ul>
+  			<li><a href="/code/http_libraries"> Author A: Code</a></li>
+  			<!-- <li><a href=""> Author B: Code</a></li> -->
+  			<!-- <li><a href=""> Final Code</a></li> -->
+  		</ul>
+  	</div>
+  </div>
+  <!-- END SUBMISSION DETAILS -->
+  	
+  </div>
+  </body>
+</html>

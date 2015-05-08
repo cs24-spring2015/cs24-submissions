@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> CS24 - Recipe Name </title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/cookbook.css">
+
+    <script src="/js/cookbook.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+
+  <nav class="navbar navbar-default navbar-fixed-top ">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">CS24</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/views/">Home <span class="sr-only">(current)</span></a></li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+  	<div class="recipe container">
+  		<label> tags: </label>
+  		<span id="tags">
+  			<span class="label label-primary">String</span>
+  			<span class="label label-primary">Formatting</span>
+  		</span>
+
+  		<hr>
+  		<h1 id="recipe"> Security </h1> 
+  		<hr>
+  	
+  	<section id="problem"> 
+  		<h2> Problem </h2>
+  		<p class="lead">"For a given file, generate it’s checksum. Be sure to discuss what checksum is. SHA1, MD5, or any other type of digest is okay to use. "</p>
+  	</section>
+
+  	<section id="solution">
+  		<h2> Solution </h2>
+  		<p class="lead"> "A checksum is a count of the number of bits in a transmission unit that is included with the unit so that the receiver can check to see whether the same number of bits arrived. If the counts match, it's assumed that the complete transmission was received." </p>
+ <pre class="pre-scrollable">
+package com.javacodegeeks.java.core;
+import java.io.FileInputStream;
+import java.security.MessageDigest;
+
+public class FileCheckSumExample {
+    public static void main(String args[]) throws Exception {
+        String filepath = "C:\\Users\\nikos7\\Desktop\\output.txt";
+        MessageDigest messageDigest = MessageDigest.getInstance("SHA1");
+
+        FileInputStream fileInput = new FileInputStream(filepath);
+        byte[] dataBytes = new byte[1024];
+
+        int bytesRead = 0;
+
+        while ((bytesRead = fileInput.read(dataBytes)) != -1) {
+            messageDigest.update(dataBytes, 0, bytesRead);
+        }
+
+        byte[] digestBytes = messageDigest.digest();
+
+        StringBuffer sb = new StringBuffer("");
+         
+        for (int i = 0; i < digestBytes.length; i++) {
+            sb.append(Integer.toString((digestBytes[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        System.out.println("Checksum for the File: " + sb.toString());
+        fileInput.close();
+    }
+}
+
+</pre>
+	<p class="lead">If you run this, will generate a file's checksum value in Java using
+    the SHA-1 hash function. Thus the basic steps are: (1) opening a MessageDigest instance, (2) open and reading the file using FileInputStream, (3) updating the MessageDigest with the new bytes read from the file using the MessageDigest.update method, and (4) using a StringBugger to convert and print the MessageDigest in hex representation.</p>
+
+	</section> 
+
+  	<section class="resources">
+  		<h2> Related </h2>
+      <a href=""><span class="label label-success">N/A</span></a>
+  	</section>
+    <br>
+  <!-- BEGIN SUBMISSION DETAILS -->
+  <div id="submission-details" class="panel panel-default">
+  	<div class="panel-heading">
+    	<h3 class="panel-title">Submission Details</h3>
+  	</div>
+  	<div class="panel-body">
+  		<label> Author(s) </label>
+  		<p class="author"> Emily Zhang </p> 
+      <p class="author"> Lakshay Badlani </p> 
+  		<!-- <p class="author"> Second author </p>  -->
+    	<label> Resources: </label>
+  		<ul>
+  			<li><a href="http://searchsecurity.techtarget.com/definition/checksum"> TechTarget SearchSecurity: Definition of Checksum</a></li>
+  			<li><a href="http://examples.javacodegeeks.com/core-java/security/messagedigest/generate-a-file-checksum-value-in-java/"> Byron Kiourtzoglou: Example Code</a></li>
+  		</ul>
+  	</div>
+  </div>
+  <!-- END SUBMISSION DETAILS -->
+  	
+  </div>
+  </body>
+</html>

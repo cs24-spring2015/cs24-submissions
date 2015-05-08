@@ -1,0 +1,46 @@
+{
+   "Groups":{
+      "Test":[
+         {
+            "Test Number":123456,
+            "Channel":"TEST",
+            "environment":"A",
+            "output event":[
+               {
+                  "description":"very good description",
+                  "value":123,
+                  "active":true
+               },
+               {
+                  "description":"another very good description",
+                  "value":456,
+                  "active":true
+               }
+            ],
+            "active":true,
+            "instrument":"ABC"
+         },
+         {
+            "Test Number":547985,
+            "Channel":"some new channel",
+            "environment":"B",
+            "output event":[
+               {
+                  "description":"reject",
+                  "value":123,
+                  "active":true
+               },
+               {
+                  "description":"ack",
+                  "value":456,
+                  "active":true
+               }
+            ],
+            "active":true,
+            "instrument":"XYZ"
+         }
+      ],
+      "name":"A clever name",
+      "active":true
+   }
+}
