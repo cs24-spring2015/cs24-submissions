@@ -1,0 +1,103 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+
+\title{Questions on Constructors, Objects, and Instantiation. (Solutions)}
+\author{Elmer, Ethan, Lakshay and Tommy}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+\section*{Question 1}
+What is the relationship between classes and objects?\\
+
+	\textit{A class defines the structure and behaviors of all entities of a given type, while an object is one particular "instance" of that type of entity. For example, if Car is a class, then Ferrari would be an object of Car.}
+\section*{Question 2}
+What is a constructor? What is the purpose of a constructor in a class?\\
+
+	\textit{A constructor is a special kind of method in a class. It has the same name as the name of the class, and it has no return type, not even void. A constructor is called with the new operator in order to create a new object. Its main purpose is to initialize the newly created object, but it can actually do anything the programmer tells it to do.}
+
+\section*{Question 3}
+For this problem, you should write a very simple but complete class. The class represents a counter that counts 0, 1, 2, 3, 4,.... The name of the class should be Counter. It has one private instance variable representing the value of the counter. It has two instance methods: increment() adds one to the counter value, and getValue() returns the current counter value. Write a complete definition for the class, Counter.\\\\
+
+ \textit{One example:}\\\\
+	
+		public class Counter \{
+	
+	           \hspace{4ex} private int value = 0;  // Current value of the counter.
+	
+	           \hspace{4ex} public void increment() \{ 
+	            
+	                   \hspace{10ex} // add one to the value of the counter
+	                    
+	              \hspace{8ex} value += 1;
+	               
+	           \hspace{4ex} \}
+	
+	           \hspace{4ex} public int getValue() \{   
+	             
+	                  \hspace{10ex} // get the current value of the counter
+	                   
+	              \hspace{8ex} return value;
+	               
+	           \hspace{4ex} \}
+	
+	         \}
+
+\section*{Question 4}
+\par
+This problem uses the Counter class from Question 3. The following program segment is meant to simulate tossing a coin 100 times. It should use two Counter objects, headCount and tailCount, to count the number of heads and the number of tails. Fill in the blanks so that it will do so.\\ 
+
+Counter headCount, tailCount;
+
+tailCount = new Counter();
+
+headCount = new Counter();
+
+for ( int flip = 0;  flip \textless 100;  flip++ ) \{
+
+\hspace{4ex} if (Math.random() \textless 0.5) \{   // There's a 50/50 chance that this is true.
+             
+\hspace{8ex} \textit{headCount.increment()};   // Count a "head".
+
+\hspace{4ex} \}
+                 
+\hspace{4ex} else \{
+             
+\hspace{8ex} \textit{tailCount.increment()};   // Count a "tail".
+                 
+\hspace{4ex} \}
+
+\}
+          
+System.out.println("There were " + \textit{headCount.getValue()} + " heads.");
+          
+System.out.println("There were " + \textit{tailCount.getValue()} + " tails.");
+          
+ \section*{Question 5}
+ For this following question, we are going to instantiate a new monkey. And your task is to see what is the out put. Assume the Monkey class is already implemented. It takes a size and how many bananas it eats.\\
+ 
+  Here it is: \\
+  
+ public static void main(String[] args) \{ 
+ 
+ \hspace{4ex} Monkey champ = new Monkey(10, 200);
+          
+ \hspace{4ex} Monkey biggerchamp = champ;
+ 
+ \hspace{4ex} biggerchamp.size = 40; 
+ 
+ \hspace{4ex} System.out.println(champ.size); 
+ 
+ \} \\ \newline What is the output? Does this change the size of the champ monkey?\\
+           
+           	\textit{10. No.}
+          
+
+
+\end{document}  

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> CS24 - Distance Metric </title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/cookbook.css">
+
+    <script src="/js/cookbook.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+
+  <nav class="navbar navbar-default navbar-fixed-top ">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">CS24</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/views/">Home <span class="sr-only">(current)</span></a></li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+  	<div class="recipe container">
+  		<label> tags: </label>
+  		<span id="tags">
+  			<span class="label label-primary">Math</span>
+  			<span class="label label-primary">Vectors</span>
+  		</span>
+
+  		<hr>
+  		<h1 id="recipe"> Distance Metric </h1> 
+  		<hr>
+  	
+  	<section id="problem"> 
+  		<h2> Problem </h2>
+  		<p class="lead"> Given an array of vectors and a query vector, calculate the cosine distance for each vector. Return the index of the vector with the smallest distance. </p>
+  	</section>
+
+  	<section id="solution">
+  		<h2> Solution </h2>
+  		<p class="lead">WE made a vector class to have a representation of vectors. Researching the web, we noticed the 
+Cosine Distance formula had three dimensional vectors. So we decided to go for three. We made two methods,
+one that used the cosine Distance formula and another method to calculate the index of the smallest vector.</p>
+ <pre class="pre-scrollable">
+// Vector.java
+public class Vector {                         
+    public int x;
+    public int y;
+    public int z;
+
+    public Vector(int x1, int y1, int z1) {
+        x = x1;
+        y = y1;
+        z = z1;
+    }
+
+  public int smallest_d_vector (Vector[] array){
+    int count = 0;
+    int index = 0;
+    double distance = cosineDistance(array[0]);
+    while (count less than array.length) {
+      if (cosineDistance(array[count]) less than distance) {
+        distance = cosineDistance(array[count]);
+        index = count;
+      }
+      count += 1;
+    }
+    return index;
+
+  }
+
+    public double cosineDistance(Vector v2) {
+        double temp = x * v2.x + y * v2.y + z * v2.z;
+        double temp_2 = Math.sqrt(Math.abs(x * x) + Math.abs(y * y) + Math.abs(z * z));
+        double temp_3 = Math.sqrt(Math.abs(v2.x * v2.x) + Math.abs(v2.y * v2.y) + Math.abs(v2.z * v2.z));
+        return 1 - (temp / (temp_2 * temp_3)); 
+
+
+  } 
+
+
+  public static void main(String[] args) {
+        Vector[] V = new Vector[3];
+        V[0] = new Vector(1,2,3);
+        V[1] = new Vector(1,2,2);
+        V[2] = new Vector(6,9,3);
+        V[3] = new Vector(5,3,10);
+        Vector v  = new Vector(8,9,10);
+        System.out.println(v.smallest_d_vector(V)); 
+  }
+
+}
+</pre>
+	<p class="lead">If you run this, it prints information about the vectors and their distances. </p>
+
+	</section> 
+<!--   	<section class="discussion">
+  		<h2> Discussion </h2>
+  		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  	</section> -->
+
+  	<section class="resources">
+  		<h2> Related </h2>
+      <a href=""><span class="label label-success"> Related Recipe A</span></a>
+  		<a href=""><span class="label label-success"> Related Recipe B</span></a>
+  	</section>
+    <br>
+  <!-- BEGIN SUBMISSION DETAILS -->
+  <div id="submission-details" class="panel panel-default">
+  	<div class="panel-heading">
+    	<h3 class="panel-title">Submission Details</h3>
+  	</div>
+  	<div class="panel-body">
+  		<label> Author(s) </label>
+  		<p class="author"> Elmer Diaz and Anokhi Kastia</p> 
+  		<!-- <p class="author"> Second author </p>  -->
+    	<label> Resources: </label>
+  		<ul>
+  			<li><a href="Vector.java"> Final Code</a></li>
+  		</ul>
+  	</div>
+  </div>
+  <!-- END SUBMISSION DETAILS -->
+  	
+  </div>
+  </body>
+</html>

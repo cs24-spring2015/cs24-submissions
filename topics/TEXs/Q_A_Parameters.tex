@@ -1,0 +1,193 @@
+\documentclass[11 pt, oneside]{article}
+\usepackage[inner=4cm,outer=2cm]{geometry}
+\geometry{letterpaper}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+\title{Copy by reference, Pass by Value, Instantiating Arrays}
+\author{Justin, Nicki, Christine, Kisha, Sreesha}
+\date{}
+
+\begin{document}
+\maketitle
+\section*{Question 1}
+Fill in the blanks of the code to remove a doubly linked list's node. Remember that you can access a node's previous and next elements.
+
+\begin{flushleft}
+public class Nodes \{ \\	
+\setlength\parindent{24pt} 
+public void remove(Node n)\{ \\
+\setlength\parindent{48pt} 
+		node.\_\_\_\_\_\_ = node.\_\_\_\_\_; \\
+		node.\_\_\_\_\_\_ = node.\_\_\_\_\_; \\
+		node.\_\_\_\_\_\_ = null; \\
+		node.\_\_\_\_\_\_ = null; \\
+\setlength\parindent{24pt} 
+	\} \\
+\setlength\parindent{0pt} 	
+\} \\
+\textbf{node.previous.next = node.next} \\
+\textbf{node.next.previous = node.previous} \\
+\textbf{node.previous = null} \\
+\textbf{node.next = null}
+\end{flushleft}
+\clearpage
+
+\section*{Question 2}
+Using Professor Hug's code for SentinelSList, write the method called \textit{reverse} which reverses the nodes in a SentinelSList without changing the position of the sentinel.
+
+\begin{flushleft}
+\textbf{public void reverse()} \{ \\
+\setlength\parindent{12pt}
+\textbf {int sentinel = front.item;\\
+intNode reversed = null;\\
+intNode temp = front;\\
+\vspace{3mm}
+\setlength\parindent{12pt}
+while (temp != null)\{\\
+\setlength\parindent{24pt}
+IntNode tail = temp.next;\\
+temp.next = reversed;\\
+reversed = temp;\\
+temp = tail;\\
+\}\\
+\setlength\parindent{12pt}
+reversed = new IntNode(sentinel, reversed);\\
+front = reversed;\\
+\setlength\parindent{0pt}
+\}}\\
+\end{flushleft}
+
+\clearpage
+
+\section*{Question 3}
+Using the given SList Class, implement middle method which returns the object in the middle of the list. (Hint: Use two pointers instead of one).
+
+\begin{flushleft}
+public class \textit{SList} \{\\
+\setlength\parindent{12pt}
+private \textit{int} head;\\
+private \textit{SList} next = null;\\
+\vspace{3mm}
+public SList(\textit{int} head, \textit{SNode} k) \{\\
+\setlength\parindent{24pt}
+this.head = head;\\
+this.next = k;\\
+\setlength\parindent{12pt}
+\}\\
+\vspace{3mm}
+public SList() \{\\
+\setlength\parindent{24pt}
+this(null); \\
+\setlength\parindent{12pt}
+\}\\
+\vspace{3mm}
+public static \textit{Object} middle (\textit{Slist} list) \{\\
+\setlength\parindent{24pt}
+\textbf{\textit{SListNode} slow = list.head;\\
+\textit{SListNode} fast = list.head;\\
+while (fast.next != null \&\& fast.next.next != null) \{\\
+\setlength\parindent{36pt}
+slow = slow.next;\\
+fast = fast.next.next;\\
+\setlength\parindent{24pt}
+\}\\
+return slow;\\
+\setlength\parindent{12pt}
+\}\\
+}
+\setlength\parindent{0pt}
+\}\\
+\end{flushleft}
+
+\clearpage
+\section*{Question 4}
+Using the given SList Class, as Question 3, implement remove method which removes objects in every odd number index. \textit{For example}, given SList a = [1, 2, 3, 4, 5], remove function should mutate a to [2, 4].
+\begin{flushleft}
+public class \textit{SList} \{\\
+\setlength\parindent{12pt}
+private int head;\\
+private SList next;\\
+\vspace{3mm}
+public SList(\textit{int} h, \textit{SNode} k) \{\\
+\setlength\parindent{24pt}
+this.head = head;\\
+this.next = k;\\
+\setlength\parindent{12pt}
+\}\\
+\vspace{3mm}
+public SList() \{\\
+\setlength\parindent{24pt}
+this(null); \\
+\setlength\parindent{12pt}
+\}\\
+\vspace{3mm}
+public static \textit{void} remove (\textit{SList} a) \{\\
+\setlength\parindent{24pt}
+\textbf{\textit{SList} pointer =  a;\\
+\textit{int} counter = 0;\\
+while (pointer.next != null \&\& pointer != null ) \{\\
+\setlength\parindent{32pt}
+if(counter \% 2 == 0) \{\\
+\setlength\parindent{48pt}
+pointer.next = pointer.next.next;\\
+\setlength\parindent{32pt}
+\}\\
+pointer = pointer.next;\\
+counter = counter + 1;\\
+\setlength\parindent{24pt}
+\}\\
+return a;\\
+\setlength\parindent{12pt}
+\}\\
+}
+\setlength\parindent{0pt}
+\}\\
+\end{flushleft}
+\clearpage
+\section{Question 5}
+In the code below, a new array is instantiated. Write down what the code will output,and as a bonus exercise, create a test that will verify that the code behaves as you expect it to.
+\begin{flushleft}
+public class \textit{Program} \{\\
+\setlength\parindent{12pt}
+private int head;\\
+private SList next;\\
+\vspace{3mm}
+public SList(\textit{int} h, \textit{SNode} k) \{\\
+\setlength\parindent{24pt}
+this.head = head;\\
+this.next = k;\\
+\setlength\parindent{12pt}
+\}\\
+\vspace{3mm}
+public SList() \{\\
+\setlength\parindent{24pt}
+this(null); \\
+\setlength\parindent{12pt}
+\}\\
+\vspace{3mm}
+public static \textit{void} remove (\textit{SList} a) \{\\
+\setlength\parindent{24pt}
+\textbf{\textit{SList} pointer =  a;\\
+\textit{int} counter = 0;\\
+while (pointer.next != null \&\& pointer != null ) \{\\
+\setlength\parindent{32pt}
+if(counter \% 2 == 0) \{\\
+\setlength\parindent{48pt}
+pointer.next = pointer.next.next;\\
+\setlength\parindent{32pt}
+\}\\
+pointer = pointer.next;\\
+counter = counter + 1;\\
+\setlength\parindent{24pt}
+\}\\
+return a;\\
+\setlength\parindent{12pt}
+\}\\
+}
+\setlength\parindent{0pt}
+\}\\
+\end{flushleft}
+\clearpage
+
+\end{document}
